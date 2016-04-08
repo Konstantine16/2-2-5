@@ -17,36 +17,29 @@ namespace Calculator
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Calculate(object sender, EventArgs e)
         {
             double first = Convert.ToDouble(textBox1.Text);
             double second = Convert.ToDouble(textBox2.Text);
-            double result = first - second;
-            textBox3.Text = result.ToString();
-        }
+            double result;
+            switch (((Button) sender).Name)
+            {
+                case "button1":
+                    result = first + second;
+                    break;
+                case "button2":
+                    result = first - second;
+                    break;
+                case "button3":
+                    result = first/second;
+                    break;
+                case "button4":
+                    result = first*second;
+                    break;
+                default:
+                    throw new Exception("Неизвестная операция");
+            }
 
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            double first = Convert.ToDouble(textBox1.Text);
-            double second = Convert.ToDouble(textBox2.Text);
-            double result = first + second;
-            textBox3.Text = result.ToString();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            double first = Convert.ToDouble(textBox1.Text);
-            double second = Convert.ToDouble(textBox2.Text);
-            double result = first / second;
-            textBox3.Text = result.ToString();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            double first = Convert.ToDouble(textBox1.Text);
-            double second = Convert.ToDouble(textBox2.Text);
-            double result = first * second;
             textBox3.Text = result.ToString();
         }
 
