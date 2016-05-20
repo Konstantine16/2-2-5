@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using calculator;
 
 namespace Calculator
 {
@@ -21,25 +22,9 @@ namespace Calculator
         {
             double first = Convert.ToDouble(textBox1.Text);
             double second = Convert.ToDouble(textBox2.Text);
-            double result;
-            switch (((Button) sender).Name)
-            {
-                case "button1":
-                    result = first + second;
-                    break;
-                case "button2":
-                    result = first - second;
-                    break;
-                case "button3":
-                    result = first/second;
-                    break;
-                case "button4":
-                    result = first*second;
-                    break;
-                default:
-                    throw new Exception("Неизвестная операция");
-            }
-
+            ICalculator calculator = Factory.CreateCalculator(((Button) sender).Name);
+            double result = calculator.Calculate(first, second);
+           
             textBox3.Text = result.ToString();
         }
 
@@ -49,3 +34,5 @@ namespace Calculator
         }
     }
 }
+
+  
